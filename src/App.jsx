@@ -36,6 +36,7 @@ function App () {
 
   return (
     <>
+    <h1>Buscador de peliculas - API React</h1>
       <form onSubmit={searchMovies}>
         <input type='text' onChange={debounceSearchMovies} />
         <button>Buscar</button>
