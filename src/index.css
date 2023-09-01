@@ -31,7 +31,7 @@ body {
 
   background: url('../public/bg.jpg') ;
 
-  min-height: 1080px;
+  min-height: 100vh;
 
   background-attachment: fixed;
   background-position: center;
