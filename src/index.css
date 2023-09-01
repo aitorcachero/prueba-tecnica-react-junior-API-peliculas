@@ -31,6 +31,12 @@ body {
   height: 100vh;
 }
 
+h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 form {
   margin: 3rem;
   display: flex;
@@ -53,9 +59,9 @@ input[type='text'] {
 ul {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px,3fr));
-  gap: 16px;
-  width: 95vw;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 10px 25px;
+  width: 50vw;
   padding: 0;
   margin-left: 3em;
   margin-right: 3em;
@@ -81,8 +87,8 @@ article {
 }
 
 img {
-  width: 230px;
-  height: 350px;
+  width: 200px;
+  height: 300px;
   border-radius: 10px;
 }
 

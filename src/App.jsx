@@ -7,7 +7,7 @@ const API_KEY = 'https://www.omdbapi.com/?apikey=789f9465&s='
 
 function App () {
   const [movies, setMovies] = useState()
-  const debounceSearchMovies = debounce(searchMoviesDebounce, 500)
+  const debounceSearchMovies = debounce(searchMoviesDebounce, 1000)
 
   function searchMoviesDebounce (event) {
     const query = event.target.value
