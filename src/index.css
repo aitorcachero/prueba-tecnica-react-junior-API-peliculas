@@ -27,9 +27,20 @@ body {
   display: flex;
   flex-direction: column;
   place-items: center;
-  width: 100vw;
-  height: 100vh;
+  min-width: 600px;
+
+  background: url('../public/bg.jpg') ;
+
+  min-height: 500px;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+
+
 
 h1{
   display: flex;
