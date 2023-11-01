@@ -89,6 +89,7 @@ input[type='text']::placeholder {
 .no-results {
   text-align: center;
   color: red;
+  font-size: 28px;
 }
 
 .grid-container {
@@ -290,6 +291,12 @@ button:focus-visible {
   .results {
     text-align: center;
     color: #85df49;
+    font-size: 1rem;
+  }
+
+  .no-results {
+    text-align: center;
+    color: red;
     font-size: 1rem;
   }
 }
