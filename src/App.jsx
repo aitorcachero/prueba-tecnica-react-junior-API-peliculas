@@ -18,6 +18,13 @@ function App() {
           />
         </form>
         {loading && <Loader />}
+        {movies && (
+          <p className="results">
+            {movies.length === 1
+              ? 'Se ha encontrado 1 resultado'
+              : `Se han encontrado ${movies.length} resultados`}
+          </p>
+        )}
         {movies && <MovieList movies={movies} />}
         {noResults && movies !== '' && (
           <h4 className="no-results">
