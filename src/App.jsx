@@ -13,7 +13,7 @@ function App() {
         <form onSubmit={null}>
           <input
             type="text"
-            onChange={debounce(handleOnChange, 1000)}
+            onChange={debounce(handleOnChange, 500)}
             placeholder="Matrix, Star Wars..."
           />
         </form>
