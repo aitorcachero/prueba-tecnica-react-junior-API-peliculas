@@ -21,7 +21,6 @@ export default function useMovies() {
           results.Response === 'False'
             ? setNoResults(true)
             : setNoResults(false);
-          console.log(results);
           setMovies(results.Search);
           // if (firstTime) setFirstTime(!firstTime);
         } catch (error) {
