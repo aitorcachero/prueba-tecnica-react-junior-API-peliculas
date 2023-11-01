@@ -1,9 +1,9 @@
-export default function Movie ({ src, title, year }) {
+export default function Movie({ src, title, year }) {
   return (
-    <article className='movie'>
+    <article className="movie">
       <h4>{title}</h4>
-      <p>{year}</p>
+      <p>Año: {year}</p>
       <img src={src} alt={title} />
     </article>
-  )
+  );
 }

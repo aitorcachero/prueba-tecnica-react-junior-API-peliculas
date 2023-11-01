@@ -1,17 +1,21 @@
-import Movie from './Movie'
+import MovieCard from './MovieCard/MovieCard';
 
-export default function MovieList ({ movies }) {
+export default function MovieList({ movies }) {
+  console.log(movies);
   return (
-    <ul>
-      {movies.map((movie) => (
-        <li key={movie.imdbID}>
-          <Movie
-            src={movie.Poster}
-            title={movie.Title}
-            year={movie.Year}
-          />
-        </li>
-      ))}
-    </ul>
-  )
+    <div className="grid-container">
+      <ul>
+        {movies.map((movie) => (
+          <li key={movie.imdbID}>
+            <MovieCard
+              src={movie.Poster}
+              title={movie.Title}
+              year={movie.Year}
+              type={movie.Type}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }

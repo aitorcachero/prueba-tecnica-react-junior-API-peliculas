@@ -1,51 +1,32 @@
-import debounce from 'just-debounce-it'
-import { useState } from 'react'
-import MovieList from './components/MovieList'
-import Loader from './components/Loader'
+import Loader from './components/Loader/Loader';
+import MovieList from './components/MovieList';
+import useMovies from './hooks/useMovies';
+import { debounce } from 'debounce';
 
-const API_KEY = 'https://www.omdbapi.com/?apikey=789f9465&s='
-
-function App () {
-  const [movies, setMovies] = useState()
-  const debounceSearchMovies = debounce(searchMoviesDebounce, 1000)
-
-  function searchMoviesDebounce (event) {
-    const query = event.target.value
-
-    event.preventDefault()
-    fetch(`${API_KEY}${query}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.Search)
-        setMovies(data.Search)
-      })
-  }
-
-  function searchMovies (event) {
-    const query = event.target[0].value
-
-    event.preventDefault()
-    fetch(`${API_KEY}${query}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies(data.Search)
-      })
-
-    event.target.reset()
-  }
+function App() {
+  const { movies, loading, handleOnChange, noResults } = useMovies();
+  console.log(movies);
 
   return (
     <>
-      <div className='parallax'>
-        <h1>Buscador de peliculas - API React</h1>
-        <form onSubmit={searchMovies}>
-          <input type='text' onChange={debounceSearchMovies} />
-          <button>Buscar</button>
+      <div className="parallax">
+        <h1>Buscador de peliculas y juegos - API React</h1>
+        <form onSubmit={null}>
+          <input
+            type="text"
+            onChange={debounce(handleOnChange, 1000)}
+            placeholder="Matrix, Star Wars..."
+          />
         </form>
+        {loading && <Loader />}
         {movies && <MovieList movies={movies} />}
-
-    </div>
+        {noResults && (
+          <h4 className="no-results">
+            No se encontraron resultados para la busqueda
+          </h4>
+        )}
+      </div>
     </>
-  )
+  );
 }
-export default App
+export default App;
