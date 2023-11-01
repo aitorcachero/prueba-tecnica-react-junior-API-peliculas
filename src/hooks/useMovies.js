@@ -1,4 +1,3 @@
-import { debounce } from 'debounce';
 import { useEffect, useState } from 'react';
 
 export default function useMovies() {
@@ -10,7 +9,7 @@ export default function useMovies() {
 
   useEffect(() => {
     const searchMovies = async () => {
-      if (!firstTime) {
+      if (!firstTime & (value?.length > 0)) {
         const APIKEY = import.meta.env.VITE_API_KEY;
         const URL = `https://www.omdbapi.com/?apikey=${APIKEY}&s=${value}`;
 
@@ -22,7 +21,6 @@ export default function useMovies() {
             ? setNoResults(true)
             : setNoResults(false);
           setMovies(results.Search);
-          // if (firstTime) setFirstTime(!firstTime);
         } catch (error) {
           console.log(error);
         } finally {
@@ -35,7 +33,12 @@ export default function useMovies() {
   }, [value]);
 
   const handleOnChange = (e) => {
-    setValue(e.target.value);
+    if (e.target.value.length < 3) {
+      setValue(null);
+      setMovies(null);
+      setNoResults(false);
+    }
+    if (e.target.value.length > 2) setValue(e.target.value);
   };
 
   return {

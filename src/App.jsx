@@ -5,7 +5,6 @@ import { debounce } from 'debounce';
 
 function App() {
   const { movies, loading, handleOnChange, noResults } = useMovies();
-  console.log(movies);
 
   return (
     <>
@@ -20,7 +19,7 @@ function App() {
         </form>
         {loading && <Loader />}
         {movies && <MovieList movies={movies} />}
-        {noResults && (
+        {noResults && movies !== '' && (
           <h4 className="no-results">
             No se encontraron resultados para la busqueda
           </h4>
