@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import searchMovies from '../services/fetch';
 
 export default function useMovies() {
   const [movies, setMovies] = useState();
@@ -8,19 +9,14 @@ export default function useMovies() {
   const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
-    const searchMovies = async () => {
+    const getMovies = async () => {
       if (!firstTime & (value?.length > 0)) {
-        const APIKEY = import.meta.env.VITE_API_KEY;
-        const URL = `https://www.omdbapi.com/?apikey=${APIKEY}&s=${value}`;
-
         try {
+          const data = await searchMovies(value);
           setLoading(true);
-          const data = await fetch(URL);
-          const results = await data.json();
-          results.Response === 'False'
-            ? setNoResults(true)
-            : setNoResults(false);
-          setMovies(results.Search);
+
+          data.Response === 'False' ? setNoResults(true) : setNoResults(false);
+          setMovies(data.Search);
         } catch (error) {
           console.log(error);
         } finally {
@@ -29,7 +25,7 @@ export default function useMovies() {
       }
       setFirstTime(false);
     };
-    searchMovies();
+    getMovies();
   }, [value]);
 
   const handleOnChange = (e) => {
@@ -37,8 +33,9 @@ export default function useMovies() {
       setValue(null);
       setMovies(null);
       setNoResults(false);
+    } else {
+      setValue(e.target.value);
     }
-    if (e.target.value.length > 2) setValue(e.target.value);
   };
 
   return {

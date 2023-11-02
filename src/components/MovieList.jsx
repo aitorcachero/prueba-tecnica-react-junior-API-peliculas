@@ -1,6 +1,7 @@
 import MovieCard from './MovieCard/MovieCard';
 
 export default function MovieList({ movies }) {
+  console.log(movies);
   return (
     <div className="grid-container">
       <ul>
